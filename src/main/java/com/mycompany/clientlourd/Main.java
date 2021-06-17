@@ -36,7 +36,7 @@ public class Main {
             }
             
             //Recherche disponibilités
-
+            System.out.println("Vous êtes à la station Dimidium.");
             Long idStationDepart = 1L; // A définir
             NavetteExport n = spacelib.rechercheNavetteDepart(idStationDepart, 4);
             if(n == null){
