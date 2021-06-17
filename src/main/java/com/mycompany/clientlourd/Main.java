@@ -33,9 +33,8 @@ public class Main {
             spacelib.creerUsager("Toto", "Toto", "toto@gmail.com", "toto");
             if(spacelib.verifUsager("toto@gmail.com", "toto")){
                 System.out.println("L'utilisateur existe bien");
-            }
-            
-            //Recherche disponibilités
+                
+                //Recherche disponibilités
             System.out.println("Vous êtes à la station Dimidium.");
             Long idStationDepart = 1L; // A définir
             NavetteExport n = spacelib.rechercheNavetteDepart(idStationDepart, 4);
@@ -70,6 +69,7 @@ public class Main {
                     spacelib.updateVoyageArrive(n.getId()); //On actualise les opérations
                     spacelib.plusDeTroisVoyage(n.getId()); //On vérifie si la navette a besoin d'être révisée
                 }
+            }
                 
             }
             
