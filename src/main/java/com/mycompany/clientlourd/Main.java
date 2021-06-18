@@ -31,13 +31,14 @@ public class Main {
         
             //Connexion
             spacelib.creerUsager("Toto", "Toto", "toto@gmail.com", "toto");
-            if(spacelib.verifUsager("toto@gmail.com", "toto")){
-                System.out.println("L'utilisateur existe bien");
-                
-                //Recherche disponibilités
+            Long idUsager = (long)1;
+            int nbPassager = 4;
+            //Recherche disponibilités
             System.out.println("Vous êtes à la station Dimidium.");
-            Long idStationDepart = 1L; // A définir
-            NavetteExport n = spacelib.rechercheNavetteDepart(idStationDepart, 4);
+            Long idStationDepart = (long)2;
+            
+            NavetteExport n = spacelib.rechercheNavetteDepart(idStationDepart, nbPassager);
+            
             if(n == null){
                 System.out.println("Il n'y a pas de navette disponible actuellement");
             }
@@ -50,7 +51,7 @@ public class Main {
                 System.out.println("Vous avez bien réservé la navette " + n.getId() + ".");
                 System.out.println("Vous souhaitez aller à la station Terre.");
                 
-                Long idStationArrivee = 2L; //A définir
+                Long idStationArrivee = (long)1;
                 QuaiExport quaiArrivee = spacelib.rechercheQuaiArrivee(idStationArrivee, n.getId());
                 
                 if(quaiArrivee == null){
@@ -58,7 +59,9 @@ public class Main {
                 }
                 else{
                     System.out.println("Vous avez bien réservé le quai " + quaiDepart + ".");
-                    spacelib.libererQuaiArrimage(quaiDepart); //On libère le quai de départ
+                    //Les opérations sont faites ici
+                    spacelib.libererQuaiArrimage(quaiDepart, quaiArrivee.getId(), idUsager, nbPassager); 
+                    System.out.println("Vous quittez le quai " + quaiDepart + ".");
                     
                     System.out.println(" ");
                     System.out.println(" ");
@@ -66,12 +69,11 @@ public class Main {
                     
                     //Arrivée du voyageur
                     
-                    spacelib.updateVoyageArrive(n.getId()); //On actualise les opérations
+                    spacelib.updateVoyageArrive(n.getId(), idUsager, nbPassager); //On actualise les opérations
                     spacelib.plusDeTroisVoyage(n.getId()); //On vérifie si la navette a besoin d'être révisée
                 }
             }
                 
-            }
             
         } catch (NamingException ex) {
             //Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
