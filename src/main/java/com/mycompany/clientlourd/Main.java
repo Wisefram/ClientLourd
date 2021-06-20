@@ -30,11 +30,18 @@ public class Main {
         //2 : métier
         
             //Connexion
-            spacelib.creerUsager("Toto", "Toto", "toto@gmail.com", "toto");
+            spacelib.creerUsager("Toto2", "Toto2", "toto2@gmail.com", "toto2");
+            System.out.println("OK");
+            boolean b = spacelib.verifUsager("toto@gmail.com", "toto");
+            System.out.println(b);
+
+            
+           /*
+            
             Long idUsager = (long)1;
             int nbPassager = 4;
             //Recherche disponibilités
-            System.out.println("Vous êtes à la station Dimidium.");
+            //System.out.println("Vous êtes à la station Dimidium.");
             Long idStationDepart = (long)2;
             
             NavetteExport n = spacelib.rechercheNavetteDepart(idStationDepart, nbPassager);
@@ -58,7 +65,7 @@ public class Main {
                     System.out.println("Il n'y a pas de quai disponible actuellement");
                 }
                 else{
-                    System.out.println("Vous avez bien réservé le quai " + quaiDepart + ".");
+                    System.out.println("Vous avez bien réservé le quai " + quaiArrivee.getId() + ".");
                     //Les opérations sont faites ici
                     spacelib.libererQuaiArrimage(quaiDepart, quaiArrivee.getId(), idUsager, nbPassager); 
                     System.out.println("Vous quittez le quai " + quaiDepart + ".");
@@ -73,8 +80,8 @@ public class Main {
                     spacelib.plusDeTroisVoyage(n.getId()); //On vérifie si la navette a besoin d'être révisée
                 }
             }
-                
-            
+         
+            */
         } catch (NamingException ex) {
             //Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
             System.out.println("Contexte introuvable");
