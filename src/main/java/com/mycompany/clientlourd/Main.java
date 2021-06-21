@@ -30,19 +30,18 @@ public class Main {
         //2 : métier
         
             //Connexion
-            spacelib.creerUsager("Toto2", "Toto2", "toto2@gmail.com", "toto2");
-            System.out.println("OK");
             boolean b = spacelib.verifUsager("toto@gmail.com", "toto");
             System.out.println(b);
-
+            spacelib.creerUsager("Toto2", "Toto2", "toto2@gmail.com", "toto2");
+            System.out.println("OK");
             
-           /*
+
             
             Long idUsager = (long)1;
             int nbPassager = 4;
             //Recherche disponibilités
             //System.out.println("Vous êtes à la station Dimidium.");
-            Long idStationDepart = (long)2;
+            Long idStationDepart = (long)1;
             
             NavetteExport n = spacelib.rechercheNavetteDepart(idStationDepart, nbPassager);
             
@@ -53,12 +52,13 @@ public class Main {
                 System.out.println("Une navette est disponible.");
                 spacelib.reservationNavette(n.getId());
                 
-                Long quaiDepart = n.getQuai();
+                Long quaiDepart = (long)1;
                 
                 System.out.println("Vous avez bien réservé la navette " + n.getId() + ".");
                 System.out.println("Vous souhaitez aller à la station Terre.");
                 
-                Long idStationArrivee = (long)1;
+                Long idStationArrivee = (long)2;
+                Long quaiArrive = (long)2;
                 QuaiExport quaiArrivee = spacelib.rechercheQuaiArrivee(idStationArrivee, n.getId());
                 
                 if(quaiArrivee == null){
@@ -78,10 +78,41 @@ public class Main {
                     
                     spacelib.updateVoyageArrive(n.getId(), idUsager, nbPassager); //On actualise les opérations
                     spacelib.plusDeTroisVoyage(n.getId()); //On vérifie si la navette a besoin d'être révisée
+                    
+                    /*
+                    try{
+                    //Retour
+                    n = spacelib.rechercheNavetteDepart(idStationArrivee, nbPassager);
+                    spacelib.reservationNavette(n.getId());
+                    spacelib.libererQuaiArrimage(quaiArrive, quaiDepart, idUsager, nbPassager); 
+                    spacelib.updateVoyageArrive(n.getId(), idUsager, nbPassager); //On actualise les opérations
+                    System.out.println("Terre -> Dimidium");
+                    
+                    try{
+                        //Aller
+                    n = spacelib.rechercheNavetteDepart(idStationDepart, nbPassager);
+                    spacelib.reservationNavette(n.getId());
+                    spacelib.libererQuaiArrimage(quaiDepart, quaiArrive, idUsager, nbPassager); 
+                    spacelib.updateVoyageArrive(n.getId(), idUsager, nbPassager); //On actualise les opérations
+                    spacelib.plusDeTroisVoyage(n.getId()); //On vérifie si la navette a besoin d'être révisée
+                    System.out.println("Dimidium -> DimidiumTerre");
+                    
+                    try{
+                    //Retour
+                    n = spacelib.rechercheNavetteDepart(idStationArrivee, nbPassager);
+                    spacelib.reservationNavette(n.getId());
+                    spacelib.libererQuaiArrimage(quaiArrive, quaiDepart, idUsager, nbPassager); 
+                    spacelib.updateVoyageArrive(n.getId(), idUsager, nbPassager); //On actualise les opérations
+                    System.out.println("Terre -> Dimidium");
+                    }catch(Exception e){System.out.println("Erreur retour 2");}
+                    
+                    }catch(Exception e){System.out.println("Erreur Aller 2");}
+                    
+                    }catch(Exception e){System.out.println("Erreur retour");}*/
+                    
                 }
             }
          
-            */
         } catch (NamingException ex) {
             //Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
             System.out.println("Contexte introuvable");
